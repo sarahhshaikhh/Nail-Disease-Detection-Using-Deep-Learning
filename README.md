@@ -65,6 +65,7 @@ http://127.0.0.1:5000/
 - **Sarah Shaikh** <br>
 Aspiring Data Analyst | Blending Data, Strategy & AI to Drive Meaningful Change <br>
 https://www.linkedin.com/in/sarah-shaikh-07a3b3289/ <br>
+
 - **Dharmika Gajera** <br>
 Aspiring AI & Software Developer | Passionate about Innovation, Problem Solving & Emerging Technologies <br>
 https://www.linkedin.com/in/dharmika-gajera-47b572323/ <br>
