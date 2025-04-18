@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Forum - Diagnail</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">    
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff; 
+            color: #333333; 
+        }
+        .forum-section {
+            padding: 60px 0;
+        }
+        .forum-section h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #0056b3; 
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .forum-section h1::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background-color: #007bff; 
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .forum-section .search-bar {
+    margin-bottom: 30px;
+    display: flex; /* Use Flexbox to align items */
+    align-items: center; /* Vertically center the items */
+}
+
+.forum-section .search-bar input {
+    flex: 1; /* Allow the input to take up remaining space */
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-left: 10px; /* Add some space between the button and the input */
+}
+
+.forum-section .search-bar button {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    order: -1; /* Move the button to the left */
+}
+
+.forum-section .search-bar button:hover {
+    background-color: #0056b3;
+}
+        .forum-section .thread-card {
+            background-color: #ffffff; /* White */
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .forum-section .thread-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .forum-section .thread-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000000; 
+            margin-bottom: 10px;
+        }
+        .forum-section .thread-card p {
+            font-size: 1rem;
+            color: #666666; 
+            margin-bottom: 15px;
+        }
+        .forum-section .thread-card .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .forum-section .thread-card .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .forum-section .thread-card .user-info span {
+            font-size: 0.9rem;
+            color: #333333; /* Soft Teal */
+        }
+        .forum-section .thread-card .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .forum-section .thread-card .actions button {
+            background-color: #007bff; 
+            border: none;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+        .forum-section .thread-card .actions button:hover {
+            background-color: #0056b3; /* Darker Teal */
+        }
+        .forum-section .create-post {
+            background-color: #ffffff; /* White */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .forum-section .create-post textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #007bff; /* Soft Teal */
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        .forum-section .create-post button {
+            background-color: #007bff; /* Soft Teal */
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+        .forum-section .create-post button:hover {
+            background-color: #0056b3; /* Darker Teal */
+        }
+    </style>
+</head>
+<body>
+
+    
+    <!-- User Forum Section -->
+    <section class="forum-section">
+        <div class="container">
+            <h1>User Forum</h1>
+
+            <!-- Search Bar -->
+            <div class="row search-bar">
+                <div class="col-lg-8 mx-auto">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for threads...">
+                        <button class="btn" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Threads -->
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <!-- Thread 1 -->
+                    <div class="thread-card">
+                        <div class="user-info">
+                            <img src="static\john_doe.jpg" alt="User">
+                            <span>John Doe</span>
+                        </div>
+                        <h3>How I Dealt with Nail Fungus</h3>
+                        <p>
+                            For months, I struggled with nail fungus, trying countless treatments with little success. That’s when I discovered DiagNail. With its AI-powered analysis and expert recommendations, I finally found the right solution. The step-by-step guidance and progress tracking made all the difference. Now, my nails are healthier than ever! Thank you, DiagNail!
+                        </p>
+                        <div class="actions">
+                            <button><i class="fas fa-thumbs-up"></i> Like</button>
+                            <button><i class="fas fa-comment"></i> Comment</button>
+                        </div>
+                    </div>
+
+                    <!-- Thread 2 -->
+                    <div class="thread-card">
+                        <div class="user-info">
+                            <img src="static\mary_jane.jpg" alt="User">
+                            <span>Mary Jane</span>
+                        </div>
+                        <h3>My Nail Health Journey</h3>
+                        <p>
+                            Dealing with brittle nails was frustrating—I never knew what was causing it or how to fix it. That’s when I turned to DiagNail. The detailed analysis helped me understand my nail health better, and the progress tracking kept me motivated. Seeing real improvements over time made all the difference. Now, my nails are stronger and healthier, thanks to DiagNail!
+                        </p>
+                        <div class="actions">
+                            <button><i class="fas fa-thumbs-up"></i> Like</button>
+                            <button><i class="fas fa-comment"></i> Comment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Threads -->
+            <!-- Threads -->
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        {% for post in forum_posts %}
+        <div class="thread-card">
+            <div class="user-info">
+                <img src="static/mery_jane.jpg" alt="User"> <!-- Replace with user's avatar if available -->
+                <span>{{ post.username if post.username else "Unknown User" }}</span>
+            </div>
+            <h3>{{ post.title if post.title else "No Title" }}</h3>
+            <p>{{ post.content if post.content else "No content available." }}</p>
+            <div class="actions">
+                <button><i class="fas fa-thumbs-up"></i> Like</button>
+                <button><i class="fas fa-comment"></i> Comment</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+            <!-- Create Post -->
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="create-post">
+                        <h3>Create a New Post</h3>
+                        <form action="/create_post" method="POST">
+                            <input type="text" name="title" placeholder="Enter a title for your post" required>
+                            <textarea name="content" rows="4" placeholder="Share your experience..." required></textarea>
+                            <button type="submit">Post</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights - Nail Health Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/heatmap.js/2.0.2/heatmap.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Chart.js for Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Heatmap.js for Heatmaps -->
+    <script src="https://cdn.jsdelivr.net/npm/heatmap.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff; /* White */
+            color: #333333; /* Dark Gray */
+            width: 700px;
+            text-align: center;
+            margin-left: 400px;
+        }
+        .insights-section {
+            padding: 60px 0;
+        }
+        .insights-section h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #0056b3; /* Soft Blue */
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .insights-section h1::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background-color: #007bff; /* Blue */
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .insights-section .graph-container,
+        .insights-section .heatmap-container,
+        .insights-section .timeline-container,
+        .insights-section .comparison-container,
+        .insights-section .personalized-analysis-container,
+        .insights-section .predictive-analysis-container {
+            background-color: #ffffff; /* White */
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .insights-section canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+        .insights-section .timeline-slider {
+            width: 100%;
+            margin-top: 20px;
+        }
+        .insights-section .comparison-container {
+            display: flex;
+            gap: 20px;
+        }
+        .insights-section .comparison-container .comparison-item {
+            flex: 1;
+            text-align: center;
+        }
+        .insights-section .comparison-container .comparison-item img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .insights-section .personalized-analysis-container .analysis-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa; /* Light Gray */
+            border-radius: 10px;
+        }
+        .insights-section .personalized-analysis-container .analysis-item h3 {
+            color: #007bff; /* Blue */
+            margin-bottom: 10px;
+        }
+        .insights-section .personalized-analysis-container .analysis-item img {
+            width: 100px;
+            border-radius: 10px;
+            margin-right: 15px;
+        }
+        .insights-section .personalized-analysis-container .analysis-item p {
+            margin: 0;
+        }
+        .insights-section .predictive-analysis-container {
+            background-color: #fff3cd; /* Light Yellow for Warning */
+            border-left: 5px solid #ffc107; /* Yellow Border */
+        }
+        .insights-section .predictive-analysis-container h2 {
+            color: #856404; /* Dark Yellow */
+        }
+    </style>
+</head>
+
+<body>
+    <section class="insights-section">
+        <div class="container">
+        <h1>Insights</h1>
+
+        <!-- Graph Container -->
+        <div class="graph-container">
+            <h2>Nail Health Progress Over Time</h2>
+            <canvas id="nailHealthChart"></canvas>
+        </div>
+
+        <!-- Heatmap Container -->
+        <div class="heatmap-container">
+            <h2>Nail Health Heatmap</h2>
+            <div id="heatmap" style="width: 100%; height: 300px; background-color: #f3f3f3;"></div>
+        </div>
+
+        <!-- Timeline Slider -->
+        <div class="timeline-container">
+            <h2>Timeline</h2>
+            <input type="range" min="1" max="{{ timeline_data.months|length }}" value="{{ timeline_data.months|length }}"
+                class="timeline-slider" id="timelineSlider">
+            <p id="timelineLabel">Selected Month: <span id="selectedMonth">{{ timeline_data.selected_month }}</span></p>
+        </div>
+
+        <!-- Comparison Tool -->
+<div class="comparison-container">
+    <div class="comparison-item">
+        <h3>Previous Month</h3>
+        {% if comparison_data.previous_month.health_score == "No data available" %}
+            <p>No data available for the previous month.</p>
+        {% else %}
+
+            <p>Health Score: NULL</p>
+        {% endif %}
+    </div>
+    <div class="comparison-item">
+        <h3>Current Month</h3>
+        {% if comparison_data.current_month.health_score == "No data available" %}
+            <p>No data available for the current month.</p>
+        {% else %}
+            <p>Health Score: {{ comparison_data.current_month.health_score }}</p>
+        {% endif %}
+    </div>
+</div>
+
+        <!-- Personalized Analysis & Trends -->
+        <div class="personalized-analysis-container">
+            <h2>Personalized Analysis & Trends</h2>
+            <p>Review your historical data and track your nail health progress over time.</p>
+
+            {% for analysis in personalized_analysis_data %}
+            <div class="analysis-item d-flex align-items-center">
+                <img src="{{ analysis.image_path }}" alt="Scan Image">
+                <div>
+                    <h3>Scan on {{ analysis.date }}</h3>
+                    <p>Confidence Score: {{ analysis.confidence_score }}%</p>
+                    <p>Diagnosis: {{ analysis.diagnosis }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Predictive Analysis -->
+        <div class="predictive-analysis-container">
+            <h2>Predictive Analysis</h2>
+            <p>Based on your past scans, you might be at risk of <strong>{{ predictive_analysis_data.risk }}</strong>.
+                Consider the following preventive measures:</p>
+            <ul>
+                {% for measure in predictive_analysis_data.preventive_measures %}
+                <li>{{ measure }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <!-- Custom JS for Graphs, Heatmaps, and Timeline -->
+    <script>
+        
+        // Graph Data
+        const nailHealthData = {
+            labels: {{ labels | tojson | safe }},
+            datasets: [{
+                label: 'Nail Health Score',
+                data: {{ data | tojson | safe }},
+                borderColor: '#007bff',
+                backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                fill: true,
+            }]
+        };
+
+        const ctx = document.getElementById('nailHealthChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: nailHealthData,
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Nail Health Improvement Over Time',
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Health Score' } },
+                    x: { title: { display: true, text: 'Date' } }
+                }
+            }
+        });
+
+        // Heatmap
+        const heatmapInstance = h337.create({
+            container: document.getElementById('heatmap'),
+            radius: 40,
+        });
+
+        const heatmapData = {
+            max: 100,
+            data: {{ heatmap_data | tojson | safe }}
+        };
+
+        heatmapInstance.setData(heatmapData);
+
+        // Timeline Slider
+        const timelineSlider = document.getElementById('timelineSlider');
+        const timelineLabel = document.getElementById('selectedMonth');
+        const months = {{ timeline_data.months | tojson | safe }};
+
+        timelineSlider.addEventListener('input', function () {
+            const selectedMonth = months[this.value - 1];
+            timelineLabel.textContent = selectedMonth;
+        });
+    </script>
+</body>
+
+</html>

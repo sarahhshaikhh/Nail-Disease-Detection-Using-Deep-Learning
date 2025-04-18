@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Advice - Diagnail</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff; /* White */
+            color: #333333; /* Dark Gray */
+        }
+        .expert-section {
+            padding: 60px 0;
+        }
+        .expert-section h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #0056b3; /* Soft Blue */
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .expert-section h1::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background-color: #007bff; /* Blue */
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .expert-section .expert-card {
+            background-color: #ffffff; /* White */
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .expert-section .expert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .expert-section .expert-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .expert-section .expert-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000000; /* Black */
+            margin-bottom: 10px;
+        }
+        .expert-section .expert-card p {
+            font-size: 1rem;
+            color: #666666; /* Light Gray */
+            margin-bottom: 15px;
+        }
+        .expert-section .expert-card .availability {
+            font-size: 0.9rem;
+            color: #007bff; /* Blue */
+            margin-bottom: 15px;
+        }
+        .expert-section .expert-card .btn-book {
+            background-color: #007bff; /* Blue */
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+        .expert-section .expert-card .btn-book:hover {
+            background-color: #0056b3; /* Darker Blue */
+        }
+        .expert-section .booking-form {
+            background-color: #ffffff; /* White */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .expert-section .booking-form h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff; /* Blue */
+            margin-bottom: 20px;
+        }
+        .expert-section .booking-form input,
+        .expert-section .booking-form select,
+        .expert-section .booking-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #007bff; /* Blue */
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        .expert-section .booking-form button {
+            background-color: #007bff; /* Blue */
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+        .expert-section .booking-form button:hover {
+            background-color: #0056b3; /* Darker Blue */
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Expert Advice Section -->
+    <section class="expert-section">
+        <div class="container">
+            <h1>Expert Advice</h1>
+
+            <!-- Expert Profiles -->
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <!-- Expert 1 -->
+                    <div class="expert-card text-center">
+                        <img src="static\dr_mike.jpg" alt="Expert">
+                        <h3>Dr. Mike James</h3>
+                        <p>Certified Dermatologist with 10+ years of experience in nail health.</p>
+                        <p class="availability"><strong>Availability:</strong> Mon, Wed, Fri | 9:00 AM - 5:00 PM</p>
+                        <button class="btn-book" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Consultation</button>
+                    </div>
+
+                    <!-- Expert 2 -->
+                    <div class="expert-card text-center">
+                        <img src="static/dr_angela.jpg" alt="Expert">
+                        <h3>Dr. Angela Ru</h3>
+                        <p>Nail Health Specialist with expertise in fungal infections and nail disorders.</p>
+                        <p class="availability"><strong>Availability:</strong> Tue, Thu, Sat | 10:00 AM - 6:00 PM</p>
+                        <button class="btn-book" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Consultation</button>
+                    </div>
+
+                    <!-- Expert 3 -->
+                    <div class="expert-card text-center">
+                        <img src="static\dr_daisy.jpg" alt="Expert">
+                        <h3>Dr. Daisy Sanchez</h3>
+                        <p>Certified Dermatologist with expertise in nail health, specializing in chronic nail conditions and cosmetic nail care.</p>
+                        <p class="availability"><strong>Availability:</strong> Mon, Tue, Wed | 8:00 AM - 4:00 PM</p>
+                        <button class="btn-book" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Consultation</button>
+                    </div>
+
+                    <!-- Expert 4 -->
+                    <div class="expert-card text-center">
+                        <img src="static\dr.john.jpg" alt="Expert">
+                        <h3>Dr. John Collins</h3>
+                        <p>Dermatologist specializing in diabetic nail care, including prevention and treatment of complications.</p>
+                        <p class="availability"><strong>Availability:</strong> Thu, Fri, Sat | 11:00 AM - 7:00 PM</p>
+                        <button class="btn-book" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Consultation</button>
+                    </div>
+
+                    <!-- Expert 5 -->
+                    <div class="expert-card text-center">
+                        <img src="static\dr_samuel.jpg" alt="Expert">
+                        <h3>Dr. Samuel Carter</h3>
+                        <p>Expert in nail health, specializing in trauma recovery and reconstructive nail surgery.</p>
+                        <p class="availability"><strong>Availability:</strong> Mon, Wed, Fri | 9:00 AM - 5:00 PM</p>
+                        <button class="btn-book" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Consultation</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Form Modal -->
+            <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="bookingModalLabel">Book a Consultation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="bookingForm" class="booking-form">
+                                <input type="text" placeholder="Your Name" required>
+                                <input type="email" placeholder="Your Email" required>
+                                <input type="tel" placeholder="Your Phone Number" required>
+                                <select required>
+                                    <option value="">Select Expert</option>
+                                    <option value="Dr. Mike James">Dr. Mike James</option>
+                                    <option value="Dr. Angela Ru">Dr. Angela Ru</option>
+                                    <option value="Dr. Daisy Sanchez">Dr. Daisy Sanchez</option>
+                                    <option value="Dr. John Collins">Dr. John Collins</option>
+                                    <option value="Dr. Samuel Carter">Dr. Samuel Carter</option>
+                                </select>
+                                <input type="date" required>
+                                <input type="time" required>
+                                <textarea rows="4" placeholder="Describe your issue..."></textarea>
+                                <button type="submit">Book Now</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="toast-header">
+            <strong class="me-auto">Diagnail</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Your appointment has been booked successfully!
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS for Toast -->
+    <script>
+        // Show toast on form submission
+        document.getElementById('bookingForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent form submission
+            const toast = new bootstrap.Toast(document.querySelector('.toast'));
+            toast.show(); // Show toast
+            setTimeout(() => {
+                document.getElementById('bookingForm').reset(); // Reset form
+            }, 3000); // Reset after 3 seconds
+        });
+    </script>
+</body>
+</html>

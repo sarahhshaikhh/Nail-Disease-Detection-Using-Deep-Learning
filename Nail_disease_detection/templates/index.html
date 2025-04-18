@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nail Disease Detection</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/home.css">
+</head>
+<body>
+
+    <!-- Navigation Icons -->
+    <div class="nav-icons">
+        <div class="nav-icon" onclick="showCommunitySupport()">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+        <div class="nav-icon" onclick="window.location.href='/blog'">
+            <i class="fas fa-book"></i>
+            <span>Blog</span>
+        </div>
+        <div class="nav-icon" onclick="window.location.href='/user_forum'">
+            <i class="fas fa-users"></i>
+            <span>User Forum</span>
+        </div>
+        <div class="nav-icon" onclick="window.location.href='/about_us'">
+            <i class="fas fa-user-md"></i>
+            <span>About Us</span>
+        </div>
+        <div class="nav-icon" onclick="window.location.href='/profile'">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Nail Disease Detection</h1>
+        <p class="slogan">"Your Health, Our Priority – Detect Nail Diseases with Precision!"</p>
+    
+        {% if predicted_class %}
+            <!-- Display Prediction Result -->
+            <div class="result-box">
+                <img src="{{ image_path }}" alt="Uploaded Image" class="result-image">
+                <p><strong>Predicted Class:</strong> {{ predicted_class }}</p>
+                <p><strong>Confidence:</strong> <span class="confidence">{{ confidence|round(2) }}%</span></p>
+               <div class="a1"> <a href="/index">⬅️ Upload Another Image</a></div>
+            </div>
+        {% else %}
+            <!-- Upload Form -->
+            <form action="/index" method="post" enctype="multipart/form-data">
+                <div class="upload-box">
+                    <label for="file">📁 Upload an Image of Your Nail</label>
+                    <input type="file" id="file" name="file" required onchange="displayFileName()">
+                </div>
+                <p id="file-name">No file chosen</p>
+                <button type="submit">🔍 Predict Now</button>
+            </form>
+        {% endif %}
+    
+    </div>
+    
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="title">
+            <h1><span>Features</span></h1>
+        </div>
+        <div class="services_boxes">
+            <a href="#" class="box" onclick="openChatbot()">
+                <i class="fas fa-comments feature-icon"></i>
+                <h4>DiagNail AI</h4>
+            </a>
+            <a href="/expert_advice" class="box">
+                <i class="fas fa-user-md"></i>
+                <h4>Expert Advice</h4>
+            </a>
+            <a href="/insights" class="box">
+                <i class="fas fa-chart-line"></i>   
+                <h4>Insights</h4>
+            </a>
+        </div>
+    </section>
+
+    <!-- Chatbase Chatbot Script -->
+    <script>
+        (function(){
+            if(!window.chatbase || window.chatbase("getState") !== "initialized") {
+                window.chatbase = (...arguments) => {
+                    if (!window.chatbase.q) {
+                        window.chatbase.q = [];
+                    }
+                    window.chatbase.q.push(arguments);
+                };
+                window.chatbase = new Proxy(window.chatbase, {
+                    get(target, prop) {
+                        if (prop === "q") {
+                            return target.q;
+                        }
+                        return (...args) => target(prop, ...args);
+                    }
+                });
+            }
+            const onLoad = function() {
+                const script = document.createElement("script");
+                script.src = "https://www.chatbase.co/embed.min.js";
+                script.id = "VY0fZtCbVsfBAcZk4unKx"; // Replace with your Chatbase script ID
+                script.domain = "www.chatbase.co";
+                document.body.appendChild(script);
+            };
+            if (document.readyState === "complete") {
+                onLoad();
+            } else {
+                window.addEventListener("load", onLoad);
+            }
+        })();
+
+        // Function to open the chatbot
+        function openChatbot() {
+            if (window.chatbase && typeof window.chatbase === 'function') {
+                window.chatbase('open'); // Open the chatbot
+            } else {
+                alert("Chatbot not loaded yet, please try again later.");
+            }
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function displayFileName() {
+            const fileInput = document.getElementById('file');
+            const fileNameDisplay = document.getElementById('file-name');
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = 'Selected file: ' + fileInput.files[0].name;
+                fileNameDisplay.style.color = '#28a745'; // Green color on successful selection
+            } else {
+                fileNameDisplay.textContent = 'No file chosen';
+                fileNameDisplay.style.color = '#333';
+            }
+        }
+    </script>
+</body>
+</html>

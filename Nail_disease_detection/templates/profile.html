@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Update Email & Password</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Font Awesome for icons -->
+    <style>
+        /* Add styles for the avatar section */
+        .avatar-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .avatar-section img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #007bff;
+        }
+        .avatar-section input[type="file"] {
+            display: none;
+        }
+        .avatar-section label {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 30px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 9999px; /* Fully curved edges */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+        .avatar-section label:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>   
+    <!-- Navigation Icons -->
+    <div class="nav-icons">
+        <div class="nav-icon" onclick="window.location.href='/index'">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+        <div class="nav-icon" onclick="window.location.href='/blog'">
+            <i class="fas fa-book"></i>
+            <span>Blog</span>
+        </div>
+        <div class="nav-icon" onclick="window.location.href='/user_forum'">
+            <i class="fas fa-users"></i>
+            <span>User Forum</span>
+        </div>
+        <div class="nav-icon" onclick="window.location.href='/about_us'">
+            <i class="fas fa-user-md"></i>
+            <span>About Us</span>
+        </div>
+        <div class="nav-icon" onclick="window.location.href='/profile'">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </div>
+    </div>
+    <!-- Main Container -->
+    <div class="container">
+        <h1>Your Profile</h1>
+
+        <!-- Avatar Section -->
+        <div class="avatar-section">
+            <img id="avatarPreview" src="{{ current_avatar if current_avatar else 'https://via.placeholder.com/150' }}" alt="Avatar">
+            <form id="avatarForm" action="/upload_avatar" method="POST" enctype="multipart/form-data">
+                <input type="file" id="avatarInput" name="avatar" accept="image/*">
+                <label for="avatarInput">Upload Avatar</label>
+            </form>
+        </div>
+
+        <!-- Display Current Profile Information -->
+        <div class="profile-info">
+            <p><strong>Email:</strong> {{ current_email }}</p> <!-- Dynamic email from database -->
+        </div>
+
+        <!-- Update Form -->
+        <h2>Update Your Details</h2>
+        {% if message %}
+            <div class="{{ 'success' if success else 'error' }}">
+                {{ message }}
+            </div>
+        {% endif %}
+        <form id="updateForm" action="/profile" method="POST" onsubmit="return showAlert()">
+            <div class="form-group">
+                <label for="email">Update Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter new email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Update Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter new password" required>
+            </div>
+            <button type="submit">Update Profile</button>
+        </form>
+    </div>
+
+    <!-- Services Section -->
+    <div class="services">
+        <div class="title">
+           <h1><span>Our Services</span></h1>
+            <p class="slogan">Explore what we offer</p>
+        </div>
+        <div class="services_boxes">
+            <div class="box">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Security</h3>
+                <p>We ensure your data is safe and secure with advanced encryption techniques.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-sync-alt"></i>
+                <h3>Updates</h3>
+                <p>Regular updates to keep your profile and preferences up-to-date.</p>
+            </div>
+            <div class="box">
+                <i class="fas fa-headset"></i>
+                <h3>Support</h3>
+                <p>24/7 customer support to assist you with any issues or queries.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Avatar Preview and Form Submission -->
+    <script>
+        // Preview Avatar Image
+        const avatarInput = document.getElementById('avatarInput');
+        const avatarPreview = document.getElementById('avatarPreview');
+        const avatarForm = document.getElementById('avatarForm');
+
+        avatarInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    avatarPreview.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+            // Automatically submit the form when a file is selected
+            avatarForm.submit();
+        });
+
+        // Show Alert and Redirect
+        function showAlert() {
+            alert("Your profile will be updated.");
+            window.location.href = "{{ url_for('index') }}"; // Redirect to index.html
+            return true; // Allow form submission
+        }
+    </script>
+</body>
+</html>

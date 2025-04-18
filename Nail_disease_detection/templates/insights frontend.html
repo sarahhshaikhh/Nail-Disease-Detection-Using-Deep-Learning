@@ -1,0 +1,151 @@
+<!-- Insights Section -->
+<section class="insights-section">
+    <div class="container">
+        <h1>Insights</h1>
+
+        <!-- Graph Container -->
+        <div class="graph-container">
+            <h2>Nail Health Progress Over Time</h2>
+            <canvas id="nailHealthChart"></canvas>
+        </div>
+
+        <!-- Heatmap Container -->
+        <div class="heatmap-container">
+            <h2>Nail Health Heatmap</h2>
+            <div id="heatmap" style="width: 100%; height: 400px;"></div>
+        </div>
+
+        <!-- Timeline Slider -->
+        <div class="timeline-container">
+            <h2>Timeline</h2>
+            <input type="range" min="1" max="12" value="6" class="timeline-slider" id="timelineSlider">
+            <p id="timelineLabel">Selected Month: <span id="selectedMonth">Jun</span></p>
+        </div>
+
+        <!-- Comparison Tool -->
+        <div class="comparison-container">
+            <div class="comparison-item">
+                <h3>Previous Month</h3>
+                <img src="https://via.placeholder.com/300" alt="Previous Month">
+                <p>Health Score: 75</p>
+            </div>
+            <div class="comparison-item">
+                <h3>Current Month</h3>
+                <img src="https://via.placeholder.com/300" alt="Current Month">
+                <p>Health Score: 85</p>
+            </div>
+        </div>
+
+        <!-- Personalized Analysis & Trends -->
+        <div class="personalized-analysis-container">
+            <h2>Personalized Analysis & Trends</h2>
+            <p>Review your historical data and track your nail health progress over time.</p>
+
+            <!-- Example Analysis Items -->
+            <div class="analysis-item d-flex align-items-center">
+                <img src="https://via.placeholder.com/100" alt="Scan Image">
+                <div>
+                    <h3>Scan on 15 Oct 2023</h3>
+                    <p>Confidence Score: 92%</p>
+                    <p>Diagnosis: Healthy Nails</p>
+                </div>
+            </div>
+            <div class="analysis-item d-flex align-items-center">
+                <img src="https://via.placeholder.com/100" alt="Scan Image">
+                <div>
+                    <h3>Scan on 10 Oct 2023</h3>
+                    <p>Confidence Score: 78%</p>
+                    <p>Diagnosis: Early Signs of Nail Fungus</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Predictive Analysis -->
+        <div class="predictive-analysis-container">
+            <h2>Predictive Analysis</h2>
+            <p>Based on your past scans, you might be at risk of nail fungus. Consider the following preventive measures:</p>
+            <ul>
+                <li>Keep your nails dry and clean.</li>
+                <li>Use antifungal creams as recommended.</li>
+                <li>Avoid walking barefoot in public areas.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Custom JS for Graphs, Heatmaps, and Timeline -->
+<script>
+    // Graph Data
+    const nailHealthData = {
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"], // Timestamps
+        datasets: [{
+            label: 'Nail Health Score',
+            data: [65, 70, 75, 80, 85, 90], // Confidence scores
+            borderColor: '#007bff', // Blue
+            backgroundColor: 'rgba(0, 123, 255, 0.2)',
+            fill: true,
+        }]
+    };
+
+    // Initialize Chart.js Graph
+    const ctx = document.getElementById('nailHealthChart').getContext('2d');
+    const nailHealthChart = new Chart(ctx, {
+        type: 'line',
+        data: nailHealthData,
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Nail Health Improvement Over Time',
+                },
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Health Score',
+                    },
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Date',
+                    },
+                },
+            },
+        },
+    });
+
+    // Heatmap Data
+    const heatmapInstance = h337.create({
+        container: document.getElementById('heatmap'),
+        radius: 50, // Adjust radius for heatmap points
+    });
+
+    const heatmapData = {
+        max: 10, // Maximum value for heatmap intensity
+        data: [
+            { x: 10, y: 10, value: 5 },
+            { x: 50, y: 50, value: 8 },
+            { x: 100, y: 100, value: 10 },
+            { x: 150, y: 150, value: 7 },
+            { x: 200, y: 200, value: 3 },
+        ],
+    };
+
+    // Set Heatmap Data
+    heatmapInstance.setData(heatmapData);
+
+    // Timeline Slider
+    const timelineSlider = document.getElementById('timelineSlider');
+    const timelineLabel = document.getElementById('selectedMonth');
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    timelineSlider.addEventListener('input', function () {
+        const selectedMonth = months[this.value - 1];
+        timelineLabel.textContent = selectedMonth;
+        console.log(`Selected Month: ${selectedMonth}`);
+    });
+</script>

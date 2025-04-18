@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Diagnail</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #83a5c9; /* Light Beige */
+            color: #333333; /* Dark Gray */
+        }
+        .about-section {
+            padding: 80px 0;
+            background-color: #ffffff; /* White */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+        }
+        .about-section h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #0056b3; /* Soft Teal */
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .about-section h1::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background-color: #007bff; /* Coral */
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .about-section h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #007bff; /* Soft Teal */
+            margin-bottom: 20px;
+        }
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666666; /* Light Gray */
+            margin-bottom: 20px;
+        }
+        .about-section .feature-icon {
+            font-size: 2.5rem;
+            color: #007bff; /* Soft Teal */
+            margin-bottom: 15px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .about-section .feature-icon:hover {
+            transform: scale(1.2);
+            color: #0056b3; /* Coral */
+        }
+        .about-section .feature-card {
+            background-color: #FFFFFF; /* Light Beige */
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .about-section .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .about-section .btn-primary {
+            background-color: #007bff; /* Soft Teal */
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .about-section .btn-primary:hover {
+            background-color: #0056b3; /* Darker Teal */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- About Us Section -->
+    <section class="about-section">
+        <div class="container">
+            <h1>About Diagnail</h1>
+            
+            <!-- Mission Statement -->
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2>Our Mission</h2>
+                    <p>
+                        At Diagnail, we are committed to revolutionizing nail health through cutting-edge AI technology. 
+                        Our mission is to provide accurate, accessible, and personalized nail disease detection and care 
+                        to empower individuals to take control of their health.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Features Overview -->
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2>What We Offer</h2>
+                    <div class="row">
+                        <!-- Feature 1: AI-Powered Detection -->
+                        <div class="col-md-4 mb-4">
+                            <a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit;">
+                                <div class="feature-card">
+                                    <i class="fas fa-robot feature-icon"></i>
+                                    <h4>AI-Powered Detection</h4>
+                                    <p>Upload an image and get instant analysis of your nail health.</p>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- Feature 2: Chatbot Assistance -->
+                        <div class="col-md-4 mb-4">
+                            <div class="feature-card" style="cursor: pointer;" onclick="openChatbot()">
+                                <i class="fas fa-comments feature-icon"></i>
+                                <h4>Chatbot Assistance</h4>
+                                <p>Get real-time answers to your nail health questions.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Chatbase Chatbot Script -->
+                        <script>
+                          (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="VY0fZtCbVsfBAcZk4unKx";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+                        </script>
+                        
+                        <script>
+                            function openChatbot() {
+                                // Open Chatbase Chatbot - This triggers the floating button
+                                if (window.chatbase && typeof window.chatbase === 'function') {
+                                    window.chatbase('open');
+                                } else {
+                                    alert("Chatbot not loaded yet, please try again later.");
+                                }
+                            }
+                        </script>
+                        
+                        
+                        <!-- Feature 3: Expert Advice -->
+                        <div class="col-md-4 mb-4">
+                            <a href="{{ url_for('expert') }}" style="text-decoration: none; color: inherit;">
+                            <div class="feature-card">
+                                <i class="fas fa-user-md feature-icon"></i>
+                                <h4>Expert Advice</h4>
+                                <p>Book consultations with certified nail health experts.</p>
+                            </div>
+                            </a>
+                        </div>
+                        <!-- Feature 4: User Forum -->
+                        <div class="col-md-4 mb-4">
+                            <a href="{{ url_for('user_forum') }}" style="text-decoration: none; color: inherit;">
+                                <div class="feature-card">
+                                    <i class="fas fa-users feature-icon"></i>
+                                    <h4>User Forum</h4>
+                                    <p>Connect with others and share experiences.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Feature 5: Blogs -->
+                        <div class="col-md-4 mb-4">
+                            <a href="{{ url_for('blog') }}" style="text-decoration: none; color: inherit;">
+                                <div class="feature-card">
+                                    <i class="fas fa-blog feature-icon"></i>
+                                    <h4>Blogs</h4>
+                                    <p>Stay informed with the latest nail health tips and trends.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Feature 6: Insights -->
+                        <div class="col-md-4 mb-4">
+                            <div class="feature-card">
+                                <i class="fas fa-chart-line feature-icon"></i>
+                                <h4>Insights</h4>
+                                <p>Visualize progress charts on your nail health history.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call-to-Action -->
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2>Join the Diagnail Community</h2>
+                    <p>
+                        Ready to take control of your nail health? Upload an image, chat with our AI, or book a consultation 
+                        with an expert today!
+                    </p>
+                    <a href="index" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
