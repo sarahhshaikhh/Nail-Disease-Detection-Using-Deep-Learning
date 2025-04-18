@@ -48,11 +48,11 @@ Base Model: MobileNetV2 (Pretrained on ImageNet)
 
 # 🧪 How to Run Locally
 1. Clone the repository
-2. Install requirements:
+2. Install requirements: <br>
 pip install -r requirements.txt
-3. Run the Flask server:
+3. Run the Flask server: <br>
 python app.py
-4. Open in browser:
+4. Open in browser: <br>
 http://127.0.0.1:5000/
 
 # ✨ Future Improvements
@@ -61,10 +61,15 @@ http://127.0.0.1:5000/
 - Extend to other skin/nail diseases
 - Mobile App version
 
-# 🧑‍💻 Author
-Sarah Shaikh <br>
-Aspiring Data & Business Analyst | Passionate about AI for social good <br>
-https://www.linkedin.com/in/sarah-shaikh-07a3b3289/
+# 🧑‍💻 Authors
+- **Sarah Shaikh** <br>
+Aspiring Data Analyst | Blending Data, Strategy & AI to Drive Meaningful Change <br>
+https://www.linkedin.com/in/sarah-shaikh-07a3b3289/ <br>
+- **Dharmika Gajera** <br>
+Aspiring AI & Software Developer | Passionate about Innovation, Problem Solving & Emerging Technologies <br>
+https://www.linkedin.com/in/dharmika-gajera-47b572323/ <br>
+
+
 
 
 
