@@ -41,10 +41,44 @@ Base Model: MobileNetV2 (Pretrained on ImageNet)
 # 🚀 Deployment
 - Backend: Flask
 - Frontend: HTML/CSS with Bootstrap
-- Functionality:
-- Upload an image via browser
-- Model returns predicted class with confidence
-- Real-time, responsive prediction interface
+- AI Model: MobileNetV2 (pretrained on ImageNet)
+  
+# 💡 Core Features: <br>
+🔍 Real-Time Disease Detection:
+- Upload nail images directly via the web interface
+- Deep learning model predicts disease class with confidence scores
+- Smooth, responsive frontend for real-time interaction
+
+🤖 Diagnail AI Chatbot (powered by Chatbase):
+- Personalized AI assistant for nail care queries
+- Provides suggestions, reminders, and health advice based on user interaction
+
+👩‍⚕️ Expert Consultation:
+- Book appointments with certified dermatologists
+- Users can select available time slots via a simple interface
+
+📊 Insights Section:
+- Nail Health Progress Graph: Visualizes improvements over time
+- Heatmap Tracker: Tracks zones of nail damage or recovery
+- Health Timeline: Chronological view of past reports and scores
+- Trend Analysis: Personalized insights + predictive analytics on future risk
+
+💬 User Forum:
+- A supportive community space for users to share experiences
+- Ask questions, get answers, and connect with others
+- Moderated for safety and privacy
+
+🧠 Blog Section
+- Curated educational content about nail health, common diseases, and treatment
+- Tips from dermatologists, self-care routines, and lifestyle hacks
+
+👤 Profile Management
+- Edit personal details and health preferences
+- Track appointment history and chatbot conversations
+
+# 🔒 Data Security & Privacy <br>
+- All personal data is securely stored and encrypted <br>
+- Health-related information handled with strict confidentiality standards
 
 # 🧪 How to Run Locally
 1. Clone the repository
