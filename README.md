@@ -44,7 +44,7 @@ Base Model: MobileNetV2 (Pretrained on ImageNet)
 - AI Model: MobileNetV2 (pretrained on ImageNet)
   
 # Core Features: <br>
-🔍 Real-Time Disease Detection:
+Real-Time Disease Detection:
 - Upload nail images directly via the web interface
 - Deep learning model predicts disease class with confidence scores
 - Smooth, responsive frontend for real-time interaction
