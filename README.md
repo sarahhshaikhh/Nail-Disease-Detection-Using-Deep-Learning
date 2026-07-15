@@ -1,6 +1,6 @@
 # Nail Disease Detection using Deep Learning
 A deep learning-based system that classifies nail disease images with high accuracy. This tool aims to assist dermatologists and individuals in detecting nail diseases by simply uploading an image.
-__
+- - 
 # Overview
 This project aims to classify nail images into six categories using a Convolutional Neural Network based on the MobileNetV2 architecture. The system can assist dermatologists or individuals in identifying nail diseases by simply uploading an image.
 
