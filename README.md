@@ -1,10 +1,46 @@
-# Nail Disease Detection using Deep Learning
-A deep learning-based system that classifies nail disease images with high accuracy. This tool aims to assist dermatologists and individuals in detecting nail diseases by simply uploading an image.
+# AI-Based Nail Disease Detection using Deep Learning and Computer Vision
+
+*A deep learning web application that assists in the early identification of nail diseases using computer vision and MobileNetV2.*
+
+---
 
 # Overview
-This project aims to classify nail images into six categories using a Convolutional Neural Network based on the MobileNetV2 architecture. The system can assist dermatologists or individuals in identifying nail diseases by simply uploading an image.
 
-# Classes Detected:
+Early detection of nail abnormalities can play an important role in identifying underlying health conditions and encouraging timely medical consultation. However, access to specialized dermatological assessment may not always be readily available.
+
+This project presents an AI-powered web application that classifies nail images into six disease categories using a **MobileNetV2-based Convolutional Neural Network**. The application combines deep learning with an intuitive web interface to provide instant predictions while also offering educational resources, AI-assisted guidance, and appointment booking features.
+
+---
+
+# Business Problem
+
+Patients often delay seeking medical advice due to limited access to specialists or difficulty recognizing early symptoms.
+
+The objective of this project was to develop an accessible AI-powered system capable of:
+
+- Detecting common nail diseases from uploaded images
+- Supporting preliminary screening
+- Improving healthcare awareness
+- Providing additional resources beyond prediction through an integrated web platform
+
+---
+
+# Project Highlights
+
+- Developed a **6-class deep learning image classification model**
+- Achieved **91.6% validation accuracy** using MobileNetV2
+- Built a complete **Flask-based web application**
+- Integrated AI chatbot, dermatologist appointment booking, health insights, and community features
+- Designed a responsive user interface for real-time disease prediction
+
+---
+
+# Dataset & Preprocessing
+
+The dataset consists of labeled nail images belonging to six disease categories.
+
+### Classes
+
 - Acral Lentiginous Melanoma
 - Blue Finger
 - Clubbing
@@ -12,92 +48,121 @@ This project aims to classify nail images into six categories using a Convolutio
 - Onychogryphosis
 - Pitting
 
-# Dataset & Preprocessing
-The dataset includes labeled nail images across six disease categories.
-Images were preprocessed for enhanced feature extraction.
-Applied data augmentation techniques to improve model generalization:
+### Image Preprocessing
+
+To improve model generalization, the following augmentation techniques were applied:
 
 - Rotation
 - Scaling
 - Shearing
-- Zooming
-- Horizontal Flipping
+- Zoom
+- Horizontal Flip
+
+---
 
 # Model Architecture
-Base Model: MobileNetV2 (Pretrained on ImageNet)
-- Layers Added:
+
+The classification model was developed using **MobileNetV2**, a lightweight convolutional neural network pre-trained on ImageNet.
+
+### Architecture
+
+- MobileNetV2 Backbone
 - Global Average Pooling
-- Fully Connected Layers
-- Softmax Activation for multiclass classification
-- Loss Function: Categorical Cross-Entropy
-- Optimizer: Adam
+- Fully Connected Layer
+- Softmax Output Layer
 
-# Training Details
-- Epochs: 10
-- Batch Size: 32
-- Validation Accuracy: 91.6%
-- Validation Loss: 0.27
+### Training Configuration
 
-# Deployment
-- Backend: Flask
-- Frontend: HTML/CSS with Bootstrap
-- AI Model: MobileNetV2 (pretrained on ImageNet)
-  
-# Core Features: <br>
-Real-Time Disease Detection:
-- Upload nail images directly via the web interface
-- Deep learning model predicts disease class with confidence scores
-- Smooth, responsive frontend for real-time interaction
+| Parameter | Value |
+|-----------|-------|
+| Optimizer | Adam |
+| Loss Function | Categorical Cross-Entropy |
+| Epochs | 10 |
+| Batch Size | 32 |
+| Validation Accuracy | **91.6%** |
 
-Diagnail AI Chatbot (powered by Chatbase):
-- Personalized AI assistant for nail care queries
-- Provides suggestions, reminders, and health advice based on user interaction
+---
 
-Expert Consultation:
-- Book appointments with certified dermatologists
-- Users can select available time slots via a simple interface
+# Application Features
 
-Insights Section:
-- Nail Health Progress Graph: Visualizes improvements over time
-- Heatmap Tracker: Tracks zones of nail damage or recovery
-- Health Timeline: Chronological view of past reports and scores
-- Trend Analysis: Personalized insights + predictive analytics on future risk
+## Disease Prediction
 
-User Forum:
-- A supportive community space for users to share experiences
-- Ask questions, get answers, and connect with others
-- Moderated for safety and privacy
+Users can upload a nail image and receive an instant disease prediction along with confidence scores generated by the deep learning model.
 
-Blog Section
-- Curated educational content about nail health, common diseases, and treatment
-- Tips from dermatologists, self-care routines, and lifestyle hacks
+---
 
-Profile Management
-- Edit personal details and health preferences
-- Track appointment history and chatbot conversations
+## AI Chatbot
 
-# Data Security & Privacy <br>
-- All personal data is securely stored and encrypted <br>
-- Health-related information handled with strict confidentiality standards
+An AI-powered chatbot provides educational guidance related to nail health, common symptoms, and general care recommendations.
 
-# How to Run Locally
-1. Clone the repository
-2. Install requirements: <br>
-pip install -r requirements.txt
-3. Run the Flask server: <br>
-python app.py
-4. Open in browser: <br>
-http://127.0.0.1:5000/
+---
+
+## Dermatologist Appointment Booking
+
+Users can schedule appointments with dermatologists through an integrated booking interface.
+
+---
+
+## Health Insights
+
+The application includes several visualization features to help users monitor nail health over time.
+
+These include:
+
+- Health Progress Graphs
+- Nail Damage Heatmaps
+- Health Timeline
+- Trend Analysis
+
+---
+
+## Community Forum
+
+A discussion platform allowing users to share experiences, ask questions, and interact with others facing similar nail health concerns.
+
+---
+
+## Educational Blog
+
+A curated collection of articles covering nail diseases, prevention strategies, treatment options, and expert recommendations.
+
+---
+
+# Technologies Used
+
+### Artificial Intelligence
+
+- TensorFlow
+- Keras
+- MobileNetV2
+- Computer Vision
+
+### Backend
+
+- Flask
+- Python
+
+### Frontend
+
+- HTML
+- CSS
+- Bootstrap
+- JavaScript
+
+---
+
+# Healthcare Impact
+
+This project demonstrates how artificial intelligence can support healthcare accessibility by providing rapid image-based screening for nail diseases. While the application is not intended to replace professional medical diagnosis, it can assist users in recognizing potential abnormalities and encourage timely consultation with healthcare professionals.
+
+---
 
 # Future Improvements
-- Improve accuracy with deeper models or fine-tuning
-- Add explainability (e.g., Grad-CAM visualization)
-- Extend to other skin/nail diseases
-- Mobile App version
 
+- Fine-tune the model on larger medical datasets
+- Implement Explainable AI using Grad-CAM
+- Expand support for additional nail and skin diseases
+- Develop a cross-platform mobile application
+- Integrate electronic health record (EHR) support
 
-
-
-
-  
-
+---
